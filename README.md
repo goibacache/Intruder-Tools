@@ -23,9 +23,9 @@ Just select your Parent CSG and use the menu option!
 
 ![Deactivate option](https://github.com/goibacache/Intruder-Tools/blob/main/Release/imgs/Deactivate.png)
 
- **3. Recollider**
+ **3. Recollide**
 
-Tired of having to manually add colliders to your objects by hand? Just select their parent and this tool will set all the children as static & add colliders automaticly!
+Using blender and tired of having to manually re-add colliders to your objects by hand because they don't update? Just select their parent and this tool will set all the children as static & add colliders automaticly! If you have objects that you don't want to have collision then just be sure that their name starts with "nc_" (as in "no collide").
 
 ![Recollide option](https://github.com/goibacache/Intruder-Tools/blob/main/Release/imgs/Recollide.png)
 	 

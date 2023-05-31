@@ -10,7 +10,7 @@ using System.Linq;
 
 public class ReCollide : Editor
 {
-    [MenuItem("IntruderTools/ReCollide selected object %#r")]
+    [MenuItem("Intruder-Tools/ReCollide selected object and children")]
     private static void NewMenuOption()
     {
         List<GameObject> gos = Selection.gameObjects.ToList();
@@ -65,7 +65,7 @@ public class ReCollide : Editor
                             StaticEditorFlags.ReflectionProbeStatic;
             GameObjectUtility.SetStaticEditorFlags(currentObject, flags);
 
-
+			// No collide
             if (currentObject.name.StartsWith("nc_"))
             {
                 continue;
@@ -75,7 +75,7 @@ public class ReCollide : Editor
 
             if (col)
             {
-                Debug.Log("Quitando collider del tipo " + col.GetType());
+                Debug.Log("Removing collider of type " + col.GetType());
                 Object.DestroyImmediate(col);
 
                 if (col.GetType() == typeof(BoxCollider))

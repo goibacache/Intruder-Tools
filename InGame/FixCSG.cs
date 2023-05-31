@@ -7,25 +7,13 @@ using System.Linq;
 public class FixCSG : MonoBehaviour
 {
     /*
-     * Big thanks to Zapan15 in the unity forums for comming up with the code below.
-     * I just modified it to run on the parent of a CSG
+     * Big thanks to Zapan15 in the unity forums for comming up with the code idea below. Taken an adapted by me.
      * https://forum.unity.com/threads/progressive-gpu-error-failed-to-add-geometry-for-mesh-stud-mesh-is-missing-required-attribute-s.976230/#post-7092433
      */
 
     #if UNITY_EDITOR
-    [MenuItem("XixoTools/CSG/Find & ping broken CSG")]
-    private static void FindBrokenCSG()
-    {
-        ActuallyFind(ping: true, deactivate: false);
-    }
-
-    [MenuItem("XixoTools/CSG/Deactivate broken CSG")]
-    private static void DeactivateBrokenCSG()
-    {
-        ActuallyFind(ping: false, deactivate: true);
-    }
-
-    private static void ActuallyFind(bool ping, bool deactivate) {
+	[MenuItem("Intruder-Tools/Deactivate broken CSG")]
+    private static void DeactivateBrokenCSG() {
         try
         {
             // Let's save all of the GameObjects here.
@@ -72,35 +60,19 @@ public class FixCSG : MonoBehaviour
                 {
                     if (float.IsNaN(v3Verts[i].x) || float.IsNaN(v3Verts[i].y) || float.IsNaN(v3Verts[i].z))
                     {
-                        if (ping)
-                        {
-                            EditorGUIUtility.PingObject(go); // Ping the object, then dies.
-                            return;
-                        }
-                        if (deactivate)
-                        {
-                            objectWasDeactivated = true;
-                            go.SetActive(false);
-                        }
+						objectWasDeactivated = true;
+						go.SetActive(false);
                     }
                 }
 
-                // Check the UVs!
+                // Check for bad UVs!
                 Vector2[] verts = sm.uv;
                 for (int i = 0; i < verts.Length; i++)
                 {
                     if (float.IsNaN(verts[i].x) || float.IsNaN(verts[i].y))
                     {
-                        if (ping)
-                        {
-                            EditorGUIUtility.PingObject(go); // Ping the object, then dies.
-                            return;
-                        }
-                        if (deactivate)
-                        {
-                            objectWasDeactivated = true;
-                            go.SetActive(false);
-                        }
+						objectWasDeactivated = true;
+						go.SetActive(false);
                     }
                 }
 
@@ -112,20 +84,17 @@ public class FixCSG : MonoBehaviour
 
             if (ammountDeactivated == 0)
             {
-                Debug.Log("Your CSG is good to go! Bake away!");
+                Debug.Log("Your CSG was good to go! Bake away!");
             }
             else
             {
                 Debug.Log($"{ammountDeactivated} CSG brushes where deactivated. Your CSG is good to go! Bake away!");
             }
-
-            
         }
         catch (System.Exception ex)
         {
             Debug.LogError(ex.Message);
         }
     }
-
     #endif
 }

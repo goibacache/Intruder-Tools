@@ -40,5 +40,6 @@ Just grab this [UnityPackage](https://github.com/goibacache/Intruder-Tools/blob/
 
 # Credits?
 *Thanks to Zapan15 in the [unity forums](https://forum.unity.com/threads/progressive-gpu-error-failed-to-add-geometry-for-mesh-stud-mesh-is-missing-required-attribute-s.976230/#post-7092433) for giving me the idea to iterate through all of the CSGs*
+
  *Thanks to MitchyD for lending me his broken CSG to have a good way to test the script out!*
 

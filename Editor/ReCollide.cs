@@ -10,7 +10,7 @@ using System.Linq;
 
 public class ReCollide : Editor
 {
-    [MenuItem("Intruder-Tools/ReCollide selected object and children")]
+    [MenuItem("Intruder-Tools/ReCollide selected object's children")]
     private static void NewMenuOption()
     {
         List<GameObject> gos = Selection.gameObjects.ToList();

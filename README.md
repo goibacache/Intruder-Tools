@@ -25,7 +25,7 @@ Just select your Parent CSG and use the menu option!
 
  **3. Recollider**
 
-Tired of having to manually add colliders to your objects by hand? Just select their parent and this tool will set them all as static & add colliders!
+Tired of having to manually add colliders to your objects by hand? Just select their parent and this tool will set all the children as static & add colliders automaticly!
 
 ![Recollide option](https://github.com/goibacache/Intruder-Tools/blob/main/Release/imgs/Recollide.png)
 	 

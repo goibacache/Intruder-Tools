@@ -22,7 +22,10 @@ Tired of having to manually add colliders to your objects by hand? Just select t
 Use this on your CSG parent and it will detect and deactivate all of your CSGs that are stopping your baking!
 	 
 
+
 **How to install?**
+
+
 Just grab this UnityPackage and add it to your project! You'll get a new menu like so!
 
 **Credits?**

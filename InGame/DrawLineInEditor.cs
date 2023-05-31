@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -7,7 +8,8 @@ public class DrawLineInEditor : MonoBehaviour
 {
     #if UNITY_EDITOR    
 
-    private static List<Vector3> points;
+    public List<Vector3> points;
+    public GameObject gameObjectToSpawn;
     ZiplineProxy zipLineProxy;
     List<Color> colors;
     private Vector3 start;
@@ -15,35 +17,20 @@ public class DrawLineInEditor : MonoBehaviour
     private float vertices;
     private float maxDangle;
 
-    [MenuItem("XixoTools/DEBUG - Put cubes in points %#r")]
-    private static void DrawObjects()
-    {
-        if (points == null)
-        {
-            Debug.Log("No points where found.");
-            return;
-        }
-
-        GameObject go;
-        float scale = 0.1f;
-
-        // Draw cubes
-        for (int i = 0; i < points.Count; i++)
-        {
-            go = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            go.transform.position = points[i];
-            go.transform.localScale = new Vector3(scale, scale, scale);
-            go.name = $"Point {i}";
-        }
-    }
-
     private void loadColors()
     {
+        // DEBUG:
         colors = new List<Color>();
         colors.Add(Color.red);
         colors.Add(Color.white);
         colors.Add(Color.blue);
         colors.Add(Color.green);
+        // DEBUG:
+        //colors = new List<Color>();
+        //colors.Add(Color.black);
+        //colors.Add(Color.black);
+        //colors.Add(Color.black);
+        //colors.Add(Color.black);
     }
 
     private void OnDrawGizmos()

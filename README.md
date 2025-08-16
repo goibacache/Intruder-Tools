@@ -34,7 +34,7 @@ Using blender and tired of having to manually re-add colliders to your objects b
 # How to install?
 
 
-Just grab this [UnityPackage](https://github.com/goibacache/Intruder-Tools/releases) from the releases tab (click the 3 dots on the top right and hit "download") and add it to your project! You'll get a new menu like this!
+Just grab this [UnityPackage](https://github.com/goibacache/Intruder-Tools/releases) from the releases tab (click the ".unitypackage" file and you'll start the download) and then add it to your project! You'll get a new menu like this!
 
 ![New menu](https://github.com/goibacache/Intruder-Tools/blob/main/Release/imgs/Menu.png)
 

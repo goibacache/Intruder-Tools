@@ -12,11 +12,13 @@ public class RandomDelayInActivator : EditorWindow
     private static string minDelayKey = "RDIA-Min";
     private static string maxDelayKey = "RDIA-Max";
 
-    [MenuItem("Intruder-Tools/Random delay in activator")]
+    [MenuItem("Intruder-Tools/Random/Random Activator Delay")]
     public static void ShowWindow()
     {
         RandomDelayInActivator wnd = GetWindow<RandomDelayInActivator>();
         wnd.titleContent = new GUIContent("Randomly delay in activator");
+        wnd.minSize = new Vector2(490, 100);
+        wnd.maxSize = wnd.minSize;
 
         EditorPrefs.SetFloat(minDelayKey, 0.0f);
         EditorPrefs.SetFloat(maxDelayKey, 1f);
@@ -26,13 +28,13 @@ public class RandomDelayInActivator : EditorWindow
     {
         VisualElement root = rootVisualElement;
 
-        var titleLabel = new Label("Randomly assign a delay to selected elements activators. This will iterate through all activators and their children");
+        var titleLabel = new Label("Randomly assign a delay to selected elements activators.\nNote: This will iterate through all the selected GameObjects and their children");
         titleLabel.style.unityFontStyleAndWeight = FontStyle.Bold;
         titleLabel.style.whiteSpace = WhiteSpace.Normal;
         root.Add(titleLabel);
 
         float minDelayFloat = EditorPrefs.GetFloat(minDelayKey, minDelay);
-        UnityEditor.UIElements.FloatField minValue = new UnityEditor.UIElements.FloatField("Min Value:");
+        UnityEditor.UIElements.FloatField minValue = new UnityEditor.UIElements.FloatField("Min delay value:");
         minValue.value = minDelayFloat;
         root.Add(minValue);
 
@@ -44,7 +46,7 @@ public class RandomDelayInActivator : EditorWindow
         });
 
         float maxDelayFloat = EditorPrefs.GetFloat(maxDelayKey, maxDelay);
-        UnityEditor.UIElements.FloatField maxValue = new UnityEditor.UIElements.FloatField("Max Value:");
+        UnityEditor.UIElements.FloatField maxValue = new UnityEditor.UIElements.FloatField("Max delay value:");
         maxValue.value = maxDelayFloat;
         maxValue.name = maxDelayKey;
         root.Add(maxValue);
@@ -57,7 +59,7 @@ public class RandomDelayInActivator : EditorWindow
         });
 
         Button randomizeButton = new Button();
-        randomizeButton.text = "Randomize delay of selected activators & childs";
+        randomizeButton.text = "Randomize Activator delay of selected objects & childs";
         randomizeButton.clicked += AssignDelay;
         root.Add(randomizeButton);
     }
@@ -75,7 +77,7 @@ public class RandomDelayInActivator : EditorWindow
         minDelay = EditorPrefs.GetFloat(minDelayKey);
         maxDelay = EditorPrefs.GetFloat(maxDelayKey);
 
-        Debug.Log($"{minDelay}-{maxDelay}");
+        Debug.Log($"RandomDelayInActivator: From {minDelay} to {maxDelay}");
 
         ProcessDelay(currentSelection);
     }
@@ -90,6 +92,9 @@ public class RandomDelayInActivator : EditorWindow
             {
                 activator.delayTime = float.Parse(Random.Range(minDelay, maxDelay).ToString("F2"));
                 Debug.Log($"RandomDelayInActivator: {current.name} assigned delay of {activator.delayTime}. From [{minDelay.ToString("F2")}-{maxDelay.ToString("F2")}]");
+                // Intruder jank fix:
+                activator.enabled = !activator.enabled;
+                activator.enabled = !activator.enabled;
             }
 
             // Get all children
